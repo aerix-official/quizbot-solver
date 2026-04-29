@@ -4,7 +4,7 @@
 
 [![Releases](https://img.shields.io/badge/Releases-Latest-blue?style=flat-square&logo=github)](https://github.com/REPLACEME/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://github.com/REPLACEME/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/REPLACEME/total?style=flat-square&label=Downloads&color=orange)](https://github.com/REPLACEME/releases)
+[![Downloads](https://img.shields.io/github/downloads/aerix-official/quizbot-solver/total?style=flat-square&label=Downloads&color=orange)](https://github.com/aerix-official/quizbot-solver/releases)
 
 *A powerful Chrome extension that automatically solves **McGraw-Hill SmartBook** assignments using Claude API or free AI tabs.*
 
