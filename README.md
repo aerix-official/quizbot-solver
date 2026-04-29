@@ -2,12 +2,9 @@
 
 # 🤖 QuizBot — SmartBook Solver
 
-<img src="https://raw.githubusercontent.com/google/material-design-icons/master/png/action/extension/black/48dp/2x/outline_extension_black_48dp.png" alt="QuizBot Logo" width="120">
-
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)](https://github.com/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat-square)](LICENSE)
-[![Downloads](https://img.shields.io/badge/downloads-total-orange.svg?style=flat-square)](https://github.com/)
-[![Maintenance](https://img.shields.io/badge/maintained-yes-brightgreen.svg?style=flat-square)](https://github.com/)
+[![Releases](https://img.shields.io/badge/Releases-Latest-blue?style=flat-square&logo=github)](https://github.com/REPLACEME/releases)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://github.com/REPLACEME/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/REPLACEME/total?style=flat-square&label=Downloads&color=orange)](https://github.com/REPLACEME/releases)
 
 *A powerful Chrome extension that automatically solves **McGraw-Hill SmartBook** assignments using Claude API or free AI tabs.*
 
