@@ -2,9 +2,9 @@
 
 # 🤖 QuizBot — SmartBook Solver
 
-[![Releases](https://img.shields.io/badge/Releases-Latest-blue?style=flat-square&logo=github)](https://github.com/aerix-official/quizbot-solver/releases)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://github.com/REPLACEME/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/aerix-official/quizbot-solver/total?style=flat-square&label=Downloads&color=orange)](https://github.com/aerix-official/quizbot-solver/releases)
+[![Releases](https://img.shields.io/badge/Releases-Latest-blue?style=flat-square&logo=github)](https://github.com/aerix-official/smartbook-solver/releases)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](https://github.com/aerix-official/smartbook-solver/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/aerix-official/smartbook-solver/total?style=flat-square&label=Downloads&color=orange)](https://github.com/aerix-official/smartbook-solver/releases)
 
 *A powerful Chrome extension that automatically solves **McGraw-Hill SmartBook** assignments using Claude API or free AI tabs.*
 
