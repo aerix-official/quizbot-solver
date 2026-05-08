@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizBot — SmartBook Solver</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="popup.js" defer></script>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <img src="../quizbot_logo.png" class="header-logo" alt="QuizBot logo">
+    <div class="header-text">
+      <div class="header-title">QuizBot</div>
+      <div class="header-sub">SmartBook Solver</div>
+    </div>
+    <button id="settings-btn" class="icon-btn" title="Settings">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── STATUS ── -->
+  <div class="status-bar" id="status-bar">
+    <span class="status-dot" id="status-dot"></span>
+    <span class="status-text" id="status-text">Loading…</span>
+  </div>
+  <div id="api-warning" class="api-warning hidden">
+    No API key — <a id="go-settings" href="#">add one in Settings</a>
+  </div>
+
+  <!-- ── AI MODE ── -->
+  <div class="section">
+    <div class="section-label">AI Mode</div>
+    <div class="mode-row">
+
+      <button class="mode-btn" data-mode="api">
+        <div class="mode-logo-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#60a5fa" stroke-width="1.5"/>
+            <path d="M8 12h8M12 8v8" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="3" fill="#60a5fa" opacity="0.25"/>
+          </svg>
+        </div>
+        <div class="mode-name">Claude</div>
+        <div class="mode-tag">API</div>
+      </button>
+
+      <button class="mode-btn" data-mode="chatgpt">
+        <div class="mode-logo-wrap">
+          <img src="../chatgpt.png" class="mode-img" alt="ChatGPT">
+        </div>
+        <div class="mode-name">ChatGPT</div>
+        <div class="mode-tag">Tab</div>
+      </button>
+
+      <button class="mode-btn" data-mode="gemini">
+        <div class="mode-logo-wrap">
+          <img src="../gemini.png" class="mode-img" alt="Gemini">
+        </div>
+        <div class="mode-name">Gemini</div>
+        <div class="mode-tag">Tab</div>
+      </button>
+
+      <button class="mode-btn" data-mode="deepseek">
+        <div class="mode-logo-wrap">
+          <img src="../deepseek.png" class="mode-img" alt="DeepSeek">
+        </div>
+        <div class="mode-name">DeepSeek</div>
+        <div class="mode-tag">Tab</div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ── CONFIDENCE ── -->
+  <div class="section">
+    <div class="section-label">Confidence</div>
+    <div class="conf-pills" id="conf-pills">
+      <button class="conf-pill" data-level="high">High</button>
+      <button class="conf-pill" data-level="medium">Medium</button>
+      <button class="conf-pill" data-level="low">Low</button>
+    </div>
+    <label class="toggle-row">
+      <span class="toggle-text">Randomize confidence</span>
+      <div class="pill-switch">
+        <input type="checkbox" id="toggle-random-conf">
+        <span class="pill-thumb"></span>
+      </div>
+    </label>
+  </div>
+
+  <!-- ── OPTIONS ── -->
+  <div class="section">
+    <div class="section-label">Options</div>
+    <label class="toggle-row">
+      <span class="toggle-text">Double Credit Mode</span>
+      <div class="pill-switch">
+        <input type="checkbox" id="toggle-double-credit">
+        <span class="pill-thumb"></span>
+      </div>
+    </label>
+    <label class="toggle-row">
+      <span class="toggle-text">Pause Before Submit</span>
+      <div class="pill-switch">
+        <input type="checkbox" id="toggle-pause">
+        <span class="pill-thumb"></span>
+      </div>
+    </label>
+  </div>
+
+  <!-- ── USAGE (API mode only) ── -->
+  <div id="cost-section" class="section hidden">
+    <div class="section-label">Session Usage</div>
+    <div class="usage-row">
+      <div class="usage-stat">
+        <div class="usage-val" id="cost-requests">0</div>
+        <div class="usage-lbl">Requests</div>
+      </div>
+      <div class="usage-divider"></div>
+      <div class="usage-stat">
+        <div class="usage-val" id="cost-usd">$0.00</div>
+        <div class="usage-lbl">Est. Cost</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="footer">
+    <span class="version">v1.1.0</span>
+  </div>
+
+</body>
+</html>

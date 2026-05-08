@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "QuizBot — SmartBook Solver",
+  "description": "Automatically solves McGraw-Hill SmartBook assignments using Claude API or free ChatGPT, Gemini, and DeepSeek tabs.",
+  "version": "1.1.0",
+  "permissions": ["storage", "tabs", "scripting", "webNavigation", "activeTab"],
+  "host_permissions": [
+    "https://learning.mheducation.com/*",
+    "https://ezto.mheducation.com/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://chat.deepseek.com/*",
+    "https://deepseek.chat/*",
+    "https://api.anthropic.com/*"
+  ],
+  "background": {
+    "service_worker": "background/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://learning.mheducation.com/*"],
+      "js": ["content-scripts/smartbook.js"]
+    },
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content-scripts/chatgpt.js"]
+    },
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["content-scripts/gemini.js"]
+    },
+    {
+      "matches": ["https://chat.deepseek.com/*", "https://deepseek.chat/*"],
+      "js": ["content-scripts/deepseek.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "QuizBot — SmartBook Solver",
+    "default_icon": {
+      "16":  "quizbot_logo.png",
+      "32":  "quizbot_logo.png",
+      "48":  "quizbot_logo.png",
+      "128": "quizbot_logo.png"
+    }
+  },
+  "icons": {
+    "16":  "quizbot_logo.png",
+    "32":  "quizbot_logo.png",
+    "48":  "quizbot_logo.png",
+    "128": "quizbot_logo.png"
+  },
+  "options_page": "options/options.html",
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "Open QuizBot"
+    }
+  }
+}

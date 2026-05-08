@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuizBot — Settings</title>
+  <link rel="stylesheet" href="options.css">
+  <script src="options.js" defer></script>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <img src="../quizbot_logo.png" class="logo-img" alt="QuizBot">
+      <div class="logo-name">QuizBot</div>
+      <div class="logo-sub">v1.1.0</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#api"      class="nav-link active" data-section="api">🔑 API Key</a>
+      <a href="#behavior" class="nav-link"         data-section="behavior">⚙️ Behavior</a>
+      <a href="#usage"    class="nav-link"         data-section="usage">📊 Usage</a>
+    </nav>
+  </div>
+
+  <div class="main">
+
+    <!-- ── API KEY ── -->
+    <section class="card" id="api">
+      <div class="card-header">
+        <div class="card-title">Claude API Configuration</div>
+        <div class="card-desc">Used in <strong>Claude API</strong> mode. Your key is stored locally and sent only to Anthropic's servers. Get one at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a>.</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Anthropic API Key</label>
+        <div class="key-row">
+          <input type="password" id="api-key-input" class="input" placeholder="sk-ant-api03-…" autocomplete="off" spellcheck="false">
+          <button id="toggle-show-key" class="btn-ghost">Show</button>
+        </div>
+        <div id="api-key-status" class="field-hint"></div>
+      </div>
+
+      <div class="btn-row">
+        <button id="save-key-btn" class="btn-primary">Save Key</button>
+        <button id="test-key-btn" class="btn-outline">Test Key</button>
+        <button id="clear-key-btn" class="btn-danger">Clear</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">Model</label>
+        <select id="model-select" class="select">
+          <option value="claude-sonnet-4-6">Claude Sonnet 4.6 — Fast &amp; accurate (recommended)</option>
+          <option value="claude-opus-4-7">Claude Opus 4.7 — Highest accuracy, slower &amp; pricier</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Max Output Tokens</label>
+        <input type="number" id="max-tokens-input" class="input narrow" min="256" max="4096" value="1024">
+        <div class="field-hint">Higher = richer reasoning but costs more. 1024 is ideal for most questions.</div>
+      </div>
+    </section>
+
+    <!-- ── BEHAVIOR ── -->
+    <section class="card" id="behavior">
+      <div class="card-header">
+        <div class="card-title">Behavior</div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-name">Double Credit Mode</div>
+          <div class="setting-desc">Duplicates the SmartBook tab and answers each question twice, earning double completion credit.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="double-credit-toggle">
+          <span class="track"><span class="thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-name">Random Confidence</div>
+          <div class="setting-desc">Randomly selects High, Medium, or Low confidence instead of always using the default level.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="random-conf-toggle">
+          <span class="track"><span class="thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <div class="setting-name">Pause Before Submit</div>
+          <div class="setting-desc">Fills the answer but pauses for you to manually click the confidence button and review.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="pause-toggle">
+          <span class="track"><span class="thumb"></span></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-group">
+        <label class="field-label">Default Confidence Level</label>
+        <div class="conf-select-row">
+          <button class="conf-opt" data-level="high">High</button>
+          <button class="conf-opt" data-level="medium">Medium</button>
+          <button class="conf-opt" data-level="low">Low</button>
+        </div>
+        <div class="field-hint">Used when Random Confidence is off.</div>
+      </div>
+    </section>
+
+    <!-- ── USAGE ── -->
+    <section class="card" id="usage">
+      <div class="card-header">
+        <div class="card-title">API Usage Statistics</div>
+        <div class="card-desc">Approximate estimates only. Real billing is shown in your <a href="https://console.anthropic.com" target="_blank">Anthropic console</a>.</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-val" id="stat-requests">—</div>
+          <div class="stat-lbl">Requests</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="stat-input">—</div>
+          <div class="stat-lbl">Input Tokens</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="stat-output">—</div>
+          <div class="stat-lbl">Output Tokens</div>
+        </div>
+        <div class="stat-card accent">
+          <div class="stat-val" id="stat-cost">—</div>
+          <div class="stat-lbl">Est. Cost (USD)</div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button id="reset-usage-btn" class="btn-danger">Reset Statistics</button>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+</body>
+</html>
